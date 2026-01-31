@@ -12,6 +12,7 @@ SetWorkingDir, C:\Program Files\tth_exe
 ; press F1 to trigger execution
 F1::
 Clipped := Clip() ; assign selected text to var Clipped
+Clipped := StrReplace(Clipped, "\vec{x}", "\overrightarrow{x}")
 
 ; 1. write clipboard to file
 output := FileOpen("C:\Program Files\tth_exe\test.tex", "w")
@@ -41,6 +42,9 @@ if not ErrorLevel
 {
 ; trim leading whitespace; for some reason whitespace is generated.
 trimmedContents := regexreplace(Contents, "^\s+")
+
+trimmedContents := StrReplace(trimmedContents, "<b>R</b>", "&#8477;")
+
 }
 
 ; Send result to clipbord and then re-selects it
